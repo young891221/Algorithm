@@ -1,4 +1,4 @@
-package algospot;
+package beakjoon.past;
 
 import java.util.Scanner;
 
@@ -28,8 +28,8 @@ public class T10974_Soonyul {
 			System.out.println("i2 = "+i);
 			System.out.println("depth2 = "+depth);
 			System.out.println("arr = "+arr[i]);*/
-			// À§¿¡ ÀÖ´Â permutation ÇÔ¼ö¶§¹®¿¡ 2¹øÀÌ °Å²Ù·Î µ¹¾Æ°¡°Ô µÈ´Ù
-			swap(arr, i, depth);//µÇµ¹¾Æ°¡´Â ÇÔ¼ö...ÀÌÇØ°¡ ¾ÈµÈ´Ù...
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ permutation ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½Å²Ù·ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½È´ï¿½
+			swap(arr, i, depth);//ï¿½Çµï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½...ï¿½ï¿½ï¿½Ø°ï¿½ ï¿½ÈµÈ´ï¿½...
 			
 		}
 	}

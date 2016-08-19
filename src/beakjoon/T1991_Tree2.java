@@ -1,8 +1,8 @@
-package algospot;
+package beakjoon;
 
 public class T1991_Tree2 {
 	
-	/*=====================C++ Solution==========================*/
+	/*=====================C++ Solution3==========================*/
 	/*#include <iostream>
 	 
 	using namespace std;

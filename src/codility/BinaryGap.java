@@ -1,6 +1,6 @@
-package algospot;
+package codility;
 
-public class T1967_BFS {
+public class BinaryGap {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

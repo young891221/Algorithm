@@ -1,4 +1,4 @@
-package beakjoon;
+package beakjoon.past;
 
 import java.io.BufferedReader;
 import java.io.IOException;
