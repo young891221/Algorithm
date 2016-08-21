@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 class T10989_Good_Source {
     public static void main(String args[]) throws IOException
     {
-         
+
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int num=Integer.parseInt(in.readLine());
         int a[]=new int[10001];
