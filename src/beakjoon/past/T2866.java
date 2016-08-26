@@ -85,7 +85,7 @@ public class T2866 {
 			System.out.println(count);
 		long end = System.currentTimeMillis();
 		
-	    System.out.println( (end-start)/1000 + "초");
+	    //System.out.println( (end-start)/1000 + "초");
 	}
 
 }
