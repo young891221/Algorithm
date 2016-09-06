@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class T11052_Boonahu_DP {
     static int n;
-    static int p[] = new int[10001];
+    static int p[] = new int[1001];
     static int d[] = new int[1001];
 
     public static void main(String[] args) {
