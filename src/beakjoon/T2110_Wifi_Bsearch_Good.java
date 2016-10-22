@@ -28,7 +28,7 @@ public class T2110_Wifi_Bsearch_Good {
         int ans = 1; //사이의 거리(즉, x이자 답이다)
         int l = 1;
         int r = a[n - 1] - a[0];
-        while (l <= r) { //r의 위치는 기본적으로 l보다 커야 하므로 같거나 커야 한다.(point!!)
+        while (l <= r) { //l이 r보다 커지는 시점이 이 로직의 끝나는 시점이다.(point!!)
             int mid = (l + r) / 2; //중간지점 구해서 2분하기(point!!)
             if (possible(a, c, mid)) {
                 ans = Math.max(ans, mid);
