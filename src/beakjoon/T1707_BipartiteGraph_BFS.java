@@ -22,7 +22,7 @@ public class T1707_BipartiteGraph_BFS {
             check = new int[v+1];
 
             for(int i = 1; i <= v; i++) {
-                list[i] = new ArrayList<Integer>();
+                list[i] = new ArrayList<>();
             }
             for(int i = 1; i <= e; i++) {
                 int first = scan.nextInt();
@@ -30,7 +30,7 @@ public class T1707_BipartiteGraph_BFS {
                 list[first].add(second);
                 list[second].add(first);
             }
-            for(int i = 1; i <= v; i++) {
+            for(int i = 1; i <= v; i++) { //연결요소 체크용
                 if(check[i] == 0) {
                     bfs(v, i);
                 }
@@ -45,7 +45,7 @@ public class T1707_BipartiteGraph_BFS {
     }
 
     static void bfs(int v, int a) {
-        q = new LinkedList<Integer>();
+        q = new LinkedList<>();
         q.add(a);
         check[a] = 1;
         result = true;
@@ -55,7 +55,7 @@ public class T1707_BipartiteGraph_BFS {
             for(int i : list[x]) {
                 if(check[i] == 0) {
                     q.add(i);
-                    if(check[x] == 2) {
+                    if(check[x] == 2) { //그룹 1,2로 나누기
                         check[i] = 1;
                     } else if(check[x] == 1) {
                         check[i] = 2;
