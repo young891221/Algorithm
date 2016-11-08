@@ -1,31 +1,37 @@
 package beakjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Created by KimYJ on 2016-11-07.
  */
-class Edge {
-    int to, cost;
-    Edge(int to, int cost) {
-        this.to = to;
-        this.cost = cost;
-    }
-}
-
 public class T1753_ShotestPath_Dijkstra {
     static final int INF = 1000000000;
-    static int v, e, start, selectMin;
+    static int v, e, start;
     static List<Edge>[] list;
     static int dist[];
     static boolean check[];
+    static PriorityQueue<Edge> pq = new PriorityQueue<>();
+
+    static class Edge implements Comparable<Edge>{
+        private int vertex, distance;
+        Edge(int vertex, int distance) {
+            this.vertex = vertex;
+            this.distance = distance;
+        }
+        public int compareTo(Edge o) {
+            return distance - o.distance;
+        }
+    }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        InputStream in = new FileInputStream("C:/Users/Administrator/Desktop/1753.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        //BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String first[] = reader.readLine().split(" ");
         v = Integer.parseInt(first[0]);
         e = Integer.parseInt(first[0]);
@@ -37,7 +43,6 @@ public class T1753_ShotestPath_Dijkstra {
         for(int i = 1; i <= v; i++) {
             list[i] = new ArrayList<>();
         }
-
         for(int i = 1; i <= e; i++) {
             String uvw[] = reader.readLine().split(" ");
             int u = Integer.parseInt(uvw[0]);
@@ -45,35 +50,37 @@ public class T1753_ShotestPath_Dijkstra {
             int w = Integer.parseInt(uvw[2]);
             list[u].add(new Edge(v,w));
         }
+        Arrays.fill(dist, INF);
+
+        shortestPath();
 
         for(int i = 1; i <= v; i++) {
-            dist[i] = INF;
-        }
-
-        dist[start] = 0;
-        for(int i = 1; i <= v; i++) {
-            int min = INF;
-            for(int j = 1; j <= v; j++) {
-                if(!check[j] && min > dist[j]) {
-                    min = dist[j];
-                    selectMin = j;
-                }
-            }
-            check[selectMin] = true;
-            for(Edge x : list[selectMin]) {
-                if(dist[x.to] > dist[selectMin] + x.cost) {
-                    dist[x.to] = dist[selectMin] + x.cost;
-                }
-            }
-        }
-
-        for(int i = 1; i <= v; i++) {
-            if(dist[i] != INF) {
-                System.out.println(dist[i]);
-            } else {
+            if(dist[i] >= INF) {
                 System.out.println("INF");
+            } else {
+                System.out.println(dist[i]);
             }
         }
 
+    }
+
+    static void shortestPath() {
+        dist[start] = 0;
+        pq.add(new Edge(start, dist[start]));
+
+        while(!pq.isEmpty()) {
+            int min = pq.peek().vertex;
+            if(pq.remove().distance > dist[min]) continue; //하위 경로중 이미 수정된 것(continue시 다음 while문으로)
+            check[min] = true;
+
+            for(Edge x : list[min]) { //하위 인접리스트 돌면서 최소경로 갱신
+                int to = x.vertex;
+                int cost = x.distance;
+                if(dist[to] > dist[min] + cost) {
+                    dist[to] = dist[min] + cost;
+                    pq.add(new Edge(to, dist[to]));
+                }
+            }
+        }
     }
 }
