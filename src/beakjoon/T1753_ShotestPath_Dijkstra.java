@@ -8,6 +8,17 @@ import java.util.PriorityQueue;
 
 /**
  * Created by KimYJ on 2016-11-07.
+ 6 9
+ 1
+ 1 2 2
+ 1 3 3
+ 1 4 5
+ 1 5 10
+ 2 4 2
+ 3 4 1
+ 3 5 1
+ 4 5 3
+ 5 6 3
  */
 public class T1753_ShotestPath_Dijkstra {
     static final int INF = 1000000000;
