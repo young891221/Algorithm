@@ -40,12 +40,12 @@ public class T1753_ShotestPath_Dijkstra {
     }
 
     public static void main(String[] args) throws IOException {
-        InputStream in = new FileInputStream("C:/Users/Administrator/Desktop/1753.txt");
+        InputStream in = new FileInputStream("C:/Users/Kim YJ/Desktop/1753.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         //BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String first[] = reader.readLine().split(" ");
         v = Integer.parseInt(first[0]);
-        e = Integer.parseInt(first[0]);
+        e = Integer.parseInt(first[1]);
         start = Integer.parseInt(reader.readLine());
         list = new List[v+1];
         dist = new int[v+1];
@@ -80,8 +80,8 @@ public class T1753_ShotestPath_Dijkstra {
         pq.add(new Edge(start, dist[start]));
 
         while(!pq.isEmpty()) {
-            int min = pq.peek().vertex;
-            if(pq.remove().distance > dist[min]) continue; //하위 경로중 이미 수정된 것(continue시 다음 while문으로)
+            int min = pq.remove().vertex;
+            if(check[min]) continue; //하위 경로중 이미 수정된 것(continue시 다음 while문으로)
             check[min] = true;
 
             for(Edge x : list[min]) { //하위 인접리스트 돌면서 최소경로 갱신
