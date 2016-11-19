@@ -13,8 +13,6 @@ public class T1504_SpecialShotest_Dijkstra {
     static int n, e, v1, v2;
     static ArrayList<Edge>[] list;
     static PriorityQueue<Edge> pq;
-    static int dist[];
-    static boolean check[];
 
     static class Edge implements Comparable<Edge>{
         private int vertex;
@@ -37,8 +35,6 @@ public class T1504_SpecialShotest_Dijkstra {
         e = scan.nextInt();
         list = new ArrayList[n+1];
         pq = new PriorityQueue<>();
-        dist = new int[n+1];
-        check = new boolean[n+1];
         for(int i = 1; i <= n; i++) {
             list[i] = new ArrayList<>();
         }
@@ -52,35 +48,26 @@ public class T1504_SpecialShotest_Dijkstra {
         v1 = scan.nextInt();
         v2 = scan.nextInt();
 
-        int result1 = beforeShotest(new int[]{1, v1, v2, n});
-        int result2 = beforeShotest(new int[]{1, v2, v1, n});
+        int[] d1 = shotest(1);
+        int[] d2 = shotest(v1);
+        int[] d3 = shotest(v2);
+        int result1 = d1[v1] + d2[v2] + d3[n];
+        int result2 = d1[v2] + d3[v1] + d2[n];
+
         if(result1 > result2) { result1 = result2; }
         if(result1 >= INF) { result1 = -1; }
         System.out.println(result1);
     }
 
-    static int beforeShotest(int[] each) {
-        int result = 0;
-        for(int i = 0; i < 3; i++) {
-            int index1 = each[i];
-            int index2 = each[i+1];
-            shotest(index1);
-            result += dist[index2];
-            System.out.println(dist[index2]);
-        }
-        return result;
-    }
-
-    static void shotest(int start) {
+    static int[] shotest(int start) {
+        int dist[];
+        dist = new int[n+1];
         Arrays.fill(dist, INF);
         dist[start] = 0;
         pq.add(new Edge(start, dist[start]));
 
         while(!pq.isEmpty()) {
             int min = pq.remove().vertex;
-            if(check[min]) continue;
-            check[min] = true;
-
             for(Edge x : list[min]) {
                 int to = x.vertex;
                 int cost = x.distance;
@@ -90,5 +77,7 @@ public class T1504_SpecialShotest_Dijkstra {
                 }
             }
         }
+
+        return dist;
     }
 }
