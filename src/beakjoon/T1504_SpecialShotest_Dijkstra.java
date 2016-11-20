@@ -51,8 +51,8 @@ public class T1504_SpecialShotest_Dijkstra {
         int[] d1 = shotest(1);
         int[] d2 = shotest(v1);
         int[] d3 = shotest(v2);
-        int result1 = d1[v1] + d2[v2] + d3[n];
-        int result2 = d1[v2] + d3[v1] + d2[n];
+        int result1 = d1[v1] + d2[v2] + d3[n]; //1 -> 2 -> 3 -> n
+        int result2 = d1[v2] + d3[v1] + d2[n]; //1 -> 3 -> 2 -> n
 
         if(result1 > result2) { result1 = result2; }
         if(result1 >= INF) { result1 = -1; }
