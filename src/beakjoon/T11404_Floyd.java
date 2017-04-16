@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * Created by youngjae on 2016. 11. 20..
  */
 public class T11404_Floyd {
-    static final int INF = 100000000;
+    private static final int INF = 100000000;
     static int n, m;
     static int arr[][];
     static ArrayList<Integer>[][] list;
