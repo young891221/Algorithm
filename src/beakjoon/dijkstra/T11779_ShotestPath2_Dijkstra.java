@@ -48,13 +48,13 @@ public class T11779_ShotestPath2_Dijkstra {
         shotest();
         System.out.println(dist[end]);
         int x = end;
-        while (x != -1) {
+        while (x != -1) { //path에 있는 값들 stack에 담기(stack은 끝에서 부터 담김)
             stack.add(x);
             x = path[x];
         }
         System.out.println(stack.size());
         while (!stack.isEmpty()) {
-            System.out.print(stack.pop() + " ");
+            System.out.print(stack.pop() + " "); //stack 시작값부터 출력
         }
     }
 

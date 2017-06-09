@@ -38,7 +38,7 @@ public class T1504_SpecialShotest_Dijkstra {
         for(int i = 1; i <= n; i++) {
             list[i] = new ArrayList<>();
         }
-        for(int i = 1; i <= e; i++) {
+        for(int i = 1; i <= e; i++) { //양방향 가중치 적용
             int first = scan.nextInt();
             int second = scan.nextInt();
             int third = scan.nextInt();
@@ -60,8 +60,7 @@ public class T1504_SpecialShotest_Dijkstra {
     }
 
     static int[] shotest(int start) {
-        int dist[];
-        dist = new int[n+1];
+        int dist[] = new int[n+1];
         Arrays.fill(dist, INF);
         dist[start] = 0;
         pq.add(new Edge(start, dist[start]));

@@ -8,17 +8,17 @@ import java.util.PriorityQueue;
 
 /**
  * Created by KimYJ on 2016-11-07.
- 6 9
- 1
- 1 2 2
- 1 3 3
- 1 4 5
- 1 5 10
- 2 4 2
- 3 4 1
- 3 5 1
- 4 5 3
- 5 6 3
+6 9
+1
+1 2 2
+1 3 3
+1 4 5
+1 5 10
+2 4 2
+3 4 1
+3 5 1
+4 5 3
+5 6 3
  */
 public class T1753_ShotestPath_Dijkstra {
     static final int INF = 1000000000;
@@ -40,21 +40,21 @@ public class T1753_ShotestPath_Dijkstra {
     }
 
     public static void main(String[] args) throws IOException {
-        InputStream in = new FileInputStream("C:/Users/Kim YJ/Desktop/1753.txt");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        //BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        /*InputStream in = new FileInputStream("C:/Users/Kim YJ/Desktop/1753.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));*/
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String first[] = reader.readLine().split(" ");
-        v = Integer.parseInt(first[0]);
-        e = Integer.parseInt(first[1]);
+        v = Integer.parseInt(first[0]); //노드수
+        e = Integer.parseInt(first[1]); //간선수
         start = Integer.parseInt(reader.readLine());
         list = new List[v+1];
         dist = new int[v+1];
         check = new boolean[v+1];
 
-        for(int i = 1; i <= v; i++) {
+        for(int i = 1; i <= v; i++) { //노드 초기화
             list[i] = new ArrayList<>();
         }
-        for(int i = 1; i <= e; i++) {
+        for(int i = 1; i <= e; i++) { //간선, 가중치 적용
             String uvw[] = reader.readLine().split(" ");
             int u = Integer.parseInt(uvw[0]);
             int v = Integer.parseInt(uvw[1]);
