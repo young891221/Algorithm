@@ -1,71 +1,32 @@
 package beakjoon;
 
+import java.math.BigInteger;
 import java.util.*;
 
 /**
  * Created by Administrator on 2016-10-17.
  */
 public class Test {
-    static int n;
-    static int m;
-    static int start;
-    static ArrayList<Integer>[] list;
-    static Queue<Integer> q;
     static boolean check[];
+    static BigInteger arr[];
+    static Map<BigInteger, BigInteger> map;
+    static BigInteger N;
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        n = scan.nextInt();
-        m = scan.nextInt();
-        start = scan.nextInt();
-        list = new ArrayList[n+1];
-
-        for(int i = 1; i <= n; i++) {
-            list[i] = new ArrayList<Integer>();
-        }
-
-        for(int i = 1; i <= n; i++) {
-            int first = scan.nextInt();
-            int second = scan.nextInt();
-            list[first].add(second);
-            list[second].add(first);
-        }
-
-        for(int i = 1; i <= n; i++) {
-            Collections.sort(list[i]);
-        }
-        check = new boolean[n+1];
-        dfs(start);
-        System.out.println();
-        bfs();
+        String n = scan.next();
+        N = BigInteger.valueOf(Long.valueOf(n));
+        map = new HashMap<>();
+        System.out.println(dp(N).mod(BigInteger.valueOf(1000000)));
     }
 
-    static void dfs(int x) {
-        if(check[x]) {
-            return;
-        }
-        check[x] = true;
-        System.out.print(x + " ");
-        for(int i : list[x]) {
-            dfs(i);
-        }
-    }
+    static BigInteger dp(BigInteger n) {
+        if(n == BigInteger.ZERO) { return BigInteger.ZERO; }
+        if(n == BigInteger.ONE) { return BigInteger.ONE; }
+        if(map.get(n) != null) { return map.get(n); }
+        dp(n);
+        //map.put(n, dp(n.subtract(BigInteger.ONE)).add(dp(n.subtract(new BigInteger("2")))));
 
-    static void bfs() {
-        q = new LinkedList<Integer>();
-        check = new boolean[n+1];
-        q.add(start);
-        check[start] = true;
-        while(!q.isEmpty()) {
-            int node = q.remove();
-            System.out.print(node + " ");
-            for(int i = 0; i < list[node].size(); i++) {
-                int a = list[node].get(i);
-                if(!check[a]) {
-                    q.add(a);
-                    check[a] = true;
-                }
-            }
-        }
+        return map.get(n);
     }
 }
