@@ -60,7 +60,7 @@ public class T10816_Number_BSearch2 {
             int m = (l + r) / 2;
 
             if (cardNumbers[m] == x) {
-                if(x < 0) {
+                if(x < 0) { //숫자카드 몇 개를 갖고 있는지 결과값 반환
                     result[order] = countMinusCard[-x];
                 } else {
                     result[order] = countPlusCard[x];

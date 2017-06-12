@@ -46,15 +46,15 @@ public class T11779_ShotestPath2_Dijkstra {
         end = scan.nextInt();
 
         shotest();
-        System.out.println(dist[end]);
+        System.out.println(dist[end]); //최소 비용
         int x = end;
         while (x != -1) { //path에 있는 값들 stack에 담기(stack은 끝에서 부터 담김)
             stack.add(x);
             x = path[x];
         }
-        System.out.println(stack.size());
+        System.out.println(stack.size()); //도시의 갯수
         while (!stack.isEmpty()) {
-            System.out.print(stack.pop() + " "); //stack 시작값부터 출력
+            System.out.print(stack.pop() + " "); //도시 순서, stack 시작값부터 출력
         }
     }
 
