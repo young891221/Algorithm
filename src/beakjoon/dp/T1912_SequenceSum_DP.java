@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by Administrator on 2017-06-19.
- * D[i] = i까지 연속된 랜덤 수의 최대 합 = if(d[i] < a[i] + cache) d[i] = a[i] + cache
+ * D[i] = i까지 연속된 랜덤 수의 최대 합 = if(d[i] < a[i] + cache) d[i] = a[i] + cache => d[i-1 + a[i]
  * 한 개 이상 선택
  * 1 <= n <= 100,000
  * -1000 < 입력 < 1000
@@ -28,6 +28,17 @@ public class T1912_SequenceSum_DP {
                 if(d[i] < a[i] + cache) d[i] = a[i] + cache;
             }
         }
+
+        //더 빠른 식
+        /*for (int i=0; i<n; i++) {
+            d[i] = a[i];
+            if (i == 0) {
+                continue;
+            }
+            if (d[i] < d[i-1] + a[i]) {
+                d[i] = d[i-1] + a[i];
+            }
+        }*/
 
         int result = -1000;
         for(int i = 0; i < n; i++) {
