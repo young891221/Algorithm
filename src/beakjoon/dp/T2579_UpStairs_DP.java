@@ -8,9 +8,9 @@ import java.util.Scanner;
  * d[i] = i까지 최대 합 = 거꾸로 마지막 계단부터 시작해서 내려가는 최대 합을 구해도 된다
  * 거꾸로 = if(a[i+1] > a[i+2]) d[i+1] = d[i+1] + a[i], i+= 1
 8
+100
+100
 200
-100
-100
 200
 0
 0
@@ -28,6 +28,13 @@ public class T2579_UpStairs_DP {
             a[i] = scan.nextInt();
         }
 
+        int result = wrongDp(n, a, d);
+
+        System.out.println(result);
+    }
+
+    //이전값을 갖고는 있지만 끝 지점에 따라 이전 노드의 최대값이 달라질 수 있으므로 틀린 로직
+    private static int wrongDp(int n, int[] a, int[] d) {
         int result = 0;
         d[0] = a[0];
         for(int i = 0; i < n;) {
@@ -38,7 +45,6 @@ public class T2579_UpStairs_DP {
             else i += 2;
             result = result < d[i] ? d[i] : result;
         }
-
-        System.out.println(result);
+        return result;
     }
 }
