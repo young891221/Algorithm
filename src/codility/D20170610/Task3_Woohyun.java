@@ -60,6 +60,7 @@ public class Task3_Woohyun {
             return "Position{" + "x=" + x + ", y=" + y + '}';
         }
 
+        //Map 사용하려고 equals, hasCode 생성
         @Override
         public boolean equals(Object o) {
             if (this == o) {
@@ -99,14 +100,14 @@ public class Task3_Woohyun {
 
     private int findShortestTravel(Position currentPosition) {
         if (currentPosition.equals(destPosition)) return 0;
-        if (cache.containsKey(currentPosition)) return cache.get(currentPosition);
+        if (cache.containsKey(currentPosition)) return cache.get(currentPosition); //메모이제이션 사용
 
         markVisited(currentPosition);
 
         List<Position> availMovements = getValidMovementFromCurrentPos(currentPosition);
 
         int minMovements = DEAD_END;
-        for (Position nextPosition : availMovements) {
+        for (Position nextPosition : availMovements) { //현재 위치에서 최소값을 찾기 위해 재귀로 호출
             minMovements = Math.min(minMovements, findShortestTravel(nextPosition));
         }
         unmarkVisited(currentPosition);
