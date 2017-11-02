@@ -10,8 +10,7 @@ import java.util.Scanner;
 
 public class T1949_GreatVillage_DP {
     static int n;
-    static List<Village> villageList;
-
+    static List<Village> villageList = new ArrayList<>();
     static class Village {
         int id;
         int userCount;
@@ -55,22 +54,37 @@ public class T1949_GreatVillage_DP {
 
     public static void main(String[] args) throws FileNotFoundException {
         init();
+        int result = dp(villageList.get(0));
+        /*for(Village village : villageList) {
+            result = Math.max(result, dp(village));
+        }*/
+        System.out.println(result);
+    }
+
+    private static int dp(Village currentVillage) {
+        if(currentVillage.isGreat()) return 0;
+
+        checkIsGreat(currentVillage);
 
         int result = 0;
-        for(Village village : villageList) {
-            if(village.isGreat()) continue;
-            village.setGreat(true);
-            result += village.getUserCount();
+        for(Village village : currentVillage.nextVillage) {
+            result = Math.max(result, dp(village));
         }
 
-        System.out.println(result);
+        return result;
+    }
+
+    private static void checkIsGreat(Village currentVillage) {
+        long prevGreatCount = currentVillage.getPrevVillage().stream().filter(village -> village.isGreat() == true).count();
+        long nextGreatCount = currentVillage.getNextVillage().stream().filter(village -> village.isGreat() == true).count();
+        if(prevGreatCount == 0 && nextGreatCount == 0) currentVillage.setGreat(true);
     }
 
     private static void init() throws FileNotFoundException {
         InputStream in = new FileInputStream("C:/Users/Kim YJ/Desktop/1949.txt");
         Scanner scanner = new Scanner(new InputStreamReader(in));
+        //Scanner scanner = new Scanner(System.in);
         n = scanner.nextInt();
-        villageList = new ArrayList<>();
         for(int i = 1; i <= n; i++) {
             villageList.add(new Village(i, scanner.nextInt()));
         }
