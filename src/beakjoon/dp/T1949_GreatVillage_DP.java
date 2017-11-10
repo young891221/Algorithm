@@ -14,6 +14,8 @@ public class T1949_GreatVillage_DP {
     static class Village {
         int id;
         int userCount;
+        int maxSumGreat = -1;
+        int maxSumNotGreat = -1;
         boolean isGreat;
         List<Village> childVillage = new ArrayList<>();
 
@@ -51,12 +53,18 @@ public class T1949_GreatVillage_DP {
     }
 
     private static void isGreate(Village village) {
+        if(village.maxSumGreat > -1 || village.maxSumNotGreat > -1) {
+            return;
+        }
         village.setGreat(true);
         List<Village> childVillage = village.getChildVillage();
         childVillage.stream().forEach(notGreatevillage -> isNotGreate(notGreatevillage));
     }
 
     private static void isNotGreate(Village village) {
+        if(village.maxSumGreat > -1 || village.maxSumNotGreat > -1) {
+            return;
+        }
         int count = (int) Math.pow(2.0, village.getChildVillage().size());
         for(int i = 0; i < count; i++) {
 
