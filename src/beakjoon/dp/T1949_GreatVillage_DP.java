@@ -15,8 +15,7 @@ public class T1949_GreatVillage_DP {
         int id;
         int userCount;
         boolean isGreat;
-        List<Village> prevVillage = new ArrayList<>();
-        List<Village> nextVillage = new ArrayList<>();
+        List<Village> childVillage = new ArrayList<>();
 
         public Village(int id, int userCount) {
             this.id = id;
@@ -35,49 +34,33 @@ public class T1949_GreatVillage_DP {
             isGreat = great;
         }
 
-        public List<Village> getPrevVillage() {
-            return prevVillage;
+        public List<Village> getChildVillage() {
+            return childVillage;
         }
 
-        public void setPrevVillage(Village prevVillage) {
-            this.prevVillage.add(prevVillage);
-        }
-
-        public List<Village> getNextVillage() {
-            return nextVillage;
-        }
-
-        public void setNextVillage(Village nextVillage) {
-            this.nextVillage.add(nextVillage);
+        public void setChildVillage(List<Village> childVillage) {
+            this.childVillage = childVillage;
         }
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         init();
-        int result = dp(villageList.get(0));
-        /*for(Village village : villageList) {
-            result = Math.max(result, dp(village));
-        }*/
-        System.out.println(result);
+        isGreate(villageList.get(0));
+        isNotGreate(villageList.get(0));
+        //System.out.println(result);
     }
 
-    private static int dp(Village currentVillage) {
-        if(currentVillage.isGreat()) return 0;
+    private static void isGreate(Village village) {
+        village.setGreat(true);
+        List<Village> childVillage = village.getChildVillage();
+        childVillage.stream().forEach(notGreatevillage -> isNotGreate(notGreatevillage));
+    }
 
-        checkIsGreat(currentVillage);
+    private static void isNotGreate(Village village) {
+        int count = (int) Math.pow(2.0, village.getChildVillage().size());
+        for(int i = 0; i < count; i++) {
 
-        int result = 0;
-        for(Village village : currentVillage.nextVillage) {
-            result = Math.max(result, dp(village));
         }
-
-        return result;
-    }
-
-    private static void checkIsGreat(Village currentVillage) {
-        long prevGreatCount = currentVillage.getPrevVillage().stream().filter(village -> village.isGreat() == true).count();
-        long nextGreatCount = currentVillage.getNextVillage().stream().filter(village -> village.isGreat() == true).count();
-        if(prevGreatCount == 0 && nextGreatCount == 0) currentVillage.setGreat(true);
     }
 
     private static void init() throws FileNotFoundException {
@@ -91,12 +74,11 @@ public class T1949_GreatVillage_DP {
         for(int i = 1; i < n; i++) {
             int prevNumber = scanner.nextInt();
             int nextNumber = scanner.nextInt();
-            Village prevVillage = villageList.get(prevNumber-1);
-            Village nextVillage = villageList.get(nextNumber-1);
-            prevVillage.setNextVillage(nextVillage);
-            nextVillage.setPrevVillage(prevVillage);
-            villageList.set(prevNumber-1, prevVillage);
-            villageList.set(nextNumber-1, nextVillage);
+            Village village = villageList.get(prevNumber-1);
+            Village childVillage = villageList.get(nextNumber-1);
+            List<Village> villageList = village.getChildVillage();
+            villageList.add(childVillage);
+            village.setChildVillage(villageList);
         }
     }
 }
