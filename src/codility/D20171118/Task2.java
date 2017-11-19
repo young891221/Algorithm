@@ -14,14 +14,14 @@ public class Task2 {
     public static int dp(int index, int maxValue, int[] A) {
         if(index >= A.length) return 0;
         if(A[index] <= maxValue) return dp(index+1, maxValue, A);
-        else return(Math.min(dp(index+1, A[index]+6, A)+7, dp(index+1, 0, A)+2));
+        else return Math.min(dp(index+1, A[index]+6, A)+7, dp(index+1, 0, A)+2);
     }
 
     public static int solution(int[] A) {
         if(A.length >= 23) return 25;
         else if(A.length <= 3) return A.length * 2;
 
-        int value = Math.min(dp(1, A[0]+6, A)+7, dp(1, 0, A)+2);
+        int value = Math.min(dp(1, A[0]+6, A)+7, dp(1, 0, A)+2); //7일 이내 일때, 첫날 건너뛰고 7일 이내일 때 중 최소값
         return Math.min(value, 25);
     }
 }
