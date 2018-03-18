@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
 public class 문자열_뒤집기 {
     public static void main(String[] args) {
-        System.out.println(reverseString("abcdefg"));
+        System.out.println(reverseString2("abcdefg"));
     }
 
     private static String reverseString(String target) {
@@ -15,5 +16,10 @@ public class 문자열_뒤집기 {
         IntStream.range(0, arr.length).forEach(i -> builder.append(stack.pop()));
 
         return builder.toString();
+    }
+
+    private static String reverseString2(String target) {
+        StringBuilder builder = new StringBuilder(target);
+        return builder.reverse().toString();
     }
 }
