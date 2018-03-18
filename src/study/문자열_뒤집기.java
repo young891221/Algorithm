@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class 문자열_뒤집기 {
     public static void main(String[] args) {
@@ -10,13 +11,8 @@ public class 문자열_뒤집기 {
         StringBuilder builder = new StringBuilder();
         char arr[] = target.toCharArray();
 
-        for(int i = 0; i < arr.length; i++) {
-            stack.add(arr[i]);
-        }
-
-        for(int i = 0; i < arr.length; i++) {
-            builder.append(stack.pop());
-        }
+        IntStream.range(0, arr.length).forEach(i -> stack.add(arr[i]));
+        IntStream.range(0, arr.length).forEach(i -> builder.append(stack.pop()));
 
         return builder.toString();
     }
