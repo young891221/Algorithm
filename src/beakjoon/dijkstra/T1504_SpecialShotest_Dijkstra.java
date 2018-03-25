@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class T1504_SpecialShotest_Dijkstra {
     static final int INF = 100000000;
-    static int n, e, v1, v2;
+    static int node, edge, v1, v2;
     static ArrayList<Edge>[] list;
     static PriorityQueue<Edge> pq;
 
@@ -31,14 +31,14 @@ public class T1504_SpecialShotest_Dijkstra {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        n = scan.nextInt();
-        e = scan.nextInt();
-        list = new ArrayList[n+1];
+        node = scan.nextInt();
+        edge = scan.nextInt();
+        list = new ArrayList[node+1];
         pq = new PriorityQueue<>();
-        for(int i = 1; i <= n; i++) {
+        for(int i = 1; i <= node; i++) {
             list[i] = new ArrayList<>();
         }
-        for(int i = 1; i <= e; i++) { //양방향 가중치 적용
+        for(int i = 1; i <= edge; i++) { //양방향 가중치 적용
             int first = scan.nextInt();
             int second = scan.nextInt();
             int third = scan.nextInt();
@@ -51,8 +51,8 @@ public class T1504_SpecialShotest_Dijkstra {
         int[] d1 = shotest(1);
         int[] d2 = shotest(v1);
         int[] d3 = shotest(v2);
-        int result1 = d1[v1] + d2[v2] + d3[n]; //1 -> 2 -> 3 -> n
-        int result2 = d1[v2] + d3[v1] + d2[n]; //1 -> 3 -> 2 -> n
+        int result1 = d1[v1] + d2[v2] + d3[node]; //1 -> 2 -> 3 -> node
+        int result2 = d1[v2] + d3[v1] + d2[node]; //1 -> 3 -> 2 -> node
 
         if(result1 > result2) { result1 = result2; }
         if(result1 >= INF) { result1 = -1; }
@@ -60,7 +60,7 @@ public class T1504_SpecialShotest_Dijkstra {
     }
 
     static int[] shotest(int start) {
-        int dist[] = new int[n+1];
+        int dist[] = new int[node+1];
         Arrays.fill(dist, INF);
         dist[start] = 0;
         pq.add(new Edge(start, dist[start]));
