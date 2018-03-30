@@ -1,3 +1,5 @@
+package line;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,25 +35,26 @@ public class Task5 {
 
     private static class CustomQueue {
         private Queue<Integer> queue;
-        private PriorityQueue<Integer> priorityQueue;
+        private PriorityQueue<Integer> priorityQueue; //완전이진트리로 구현됨
 
         public CustomQueue() {
             this.queue = new LinkedList<>();
             this.priorityQueue = new PriorityQueue<>();
         }
 
+        //O(log n) 일정한 시간
         public int min() {
             return priorityQueue.peek();
         }
 
         public void add(int value) {
             queue.add(value);
-            priorityQueue.add(value);
+            priorityQueue.add(value); //O(log n)
         }
 
         public int remove() {
             Integer removeTarget = queue.remove();
-            priorityQueue.remove(removeTarget);
+            priorityQueue.remove(removeTarget); //선형 시간
             return removeTarget;
         }
 
