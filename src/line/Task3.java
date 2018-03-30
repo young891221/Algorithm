@@ -12,6 +12,7 @@ import java.util.Collections;
  * isCheck는 true, isFinished가 false이면 사이클
  * http://www.sbeenlife.com/18
  * http://clearpal7.blogspot.kr/2016/10/cycle.html
+ * https://www.acmicpc.net/problem/14441
 4
 0111
 1000
@@ -21,7 +22,7 @@ import java.util.Collections;
  */
 public class Task3 {
 
-    private static int n;
+    private static int n, m;
     private static int cnt = 0;
     private static ArrayList<Integer>[] list;
     private static boolean[] isCheck;
@@ -48,15 +49,19 @@ public class Task3 {
             Collections.sort(list[i]);
         }
 
-        int m = Integer.parseInt(br.readLine());
+        m = Integer.parseInt(br.readLine());
 
         isCheck = new boolean[n];
         isFinished = new boolean[n];
 
         for(int i = 0; i < n; i++) {
-            if(!isCheck[i]) dfs(i);
+            if(!isCheck[i]) {
+                cnt = 0;
+                dfs(i);
+            }
         }
 
+        System.out.println(0);
         //System.out.println(findCycle(m) ? 1 : 0);
     }
 
@@ -64,12 +69,13 @@ public class Task3 {
         isCheck[x] = true;
         for(int y : list[x]) {
             if(isCheck[y]) {
-                if(!isFinished[y]) {
-                    //for(int temp = y; temp!=y; temp = list[temp])	cnt++;
-                    cnt++;
+                if(!isFinished[y] && cnt == m) {
+                    System.out.println(1);
+                    System.exit(0);
                 }
             }
             else {
+                cnt++;
                 dfs(y);
             }
             isFinished[y] = true;
