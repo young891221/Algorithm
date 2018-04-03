@@ -54,7 +54,7 @@ public class Task5 {
 
         public int remove() {
             Integer removeTarget = queue.remove();
-            priorityQueue.remove(removeTarget); //선형 시간
+            priorityQueue.remove(removeTarget); //O(n)
             return removeTarget;
         }
 
