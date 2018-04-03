@@ -1,8 +1,9 @@
-import java.util.Arrays;
+package study;
+
 import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class 문자열_뒤집기 {
+public class ReverseString {
     public static void main(String[] args) {
         System.out.println(reverseString2("abcdefg"));
     }

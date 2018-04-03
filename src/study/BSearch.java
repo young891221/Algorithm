@@ -1,6 +1,8 @@
+package study;
+
 import java.util.Arrays;
 
-public class 이분탐색 {
+public class BSearch {
     public static void main(String[] args) {
         int arr[] = new int[]{10,4,5,7,9,14,16};
         int target = 10;

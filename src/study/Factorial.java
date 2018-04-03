@@ -1,4 +1,4 @@
-public class 팩토리얼 {
+public class Factorial {
     public static void main(String[] args) {
         int input = 4;
         System.out.println(fact(input));
