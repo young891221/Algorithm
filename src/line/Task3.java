@@ -22,8 +22,7 @@ import java.util.Collections;
  */
 public class Task3 {
 
-    private static int n, m;
-    private static int cnt = 0;
+    private static int n, m, result;
     private static ArrayList<Integer>[] list;
     private static boolean[] isCheck;
     private static boolean[] isFinished;
@@ -38,9 +37,9 @@ public class Task3 {
 
         for(int i = 0; i < n; i++) {
             String arr[] = br.readLine().split("");
-            for (int j = 0; j < n; j++) {
+            for (int j = 0, length = arr.length; j < length; j++) {
                 if("1".equals(arr[j])) {
-                    list[0].add(j);
+                    list[i].add(j);
                 }
             }
         }
@@ -51,35 +50,33 @@ public class Task3 {
 
         m = Integer.parseInt(br.readLine());
 
-        isCheck = new boolean[n];
         isFinished = new boolean[n];
+        isCheck = new boolean[n];
 
         for(int i = 0; i < n; i++) {
             if(!isCheck[i]) {
-                cnt = 0;
-                dfs(i);
+                result = dfs(i, 1);
             }
         }
 
-        System.out.println(0);
-        //System.out.println(findCycle(m) ? 1 : 0);
+        System.out.println(result);
     }
 
-    private static void dfs(int x) {
+    private static int dfs(int x, int count) {
         isCheck[x] = true;
         for(int y : list[x]) {
             if(isCheck[y]) {
-                if(!isFinished[y] && cnt == m) {
-                    System.out.println(1);
-                    System.exit(0);
+                if(count == m) {
+                    return 1;
                 }
             }
             else {
-                cnt++;
-                dfs(y);
+                dfs(y, count++);
             }
             isFinished[y] = true;
         }
+
+        return 0;
     }
 
 }
