@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Two_Sum {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new Solution().twoSum(new int[]{3,3}, 6)));
+        System.out.println(Arrays.toString(new Solution().twoSum(new int[]{2,3,4,}, 6)));
     }
 
     static class Solution {
